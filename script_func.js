@@ -70,3 +70,41 @@ function getCoupeNumber(miesto) {
 }
 console.log(getCoupeNumber(0));
 
+function getTimeFromMinutes(time) {
+    let a = time / 60;
+    let b = time % 60;
+    let d = parseInt(a);
+    if(time != '' && Number.isInteger(time) && time >= 0){
+        if(a <= 0.999){
+            return `Это ${d} часов и ${b} минут`;
+        }else if(a >= 2 && a <= 4){
+            return `Это ${d} часа и ${b} минут`;
+        }else if(a == 1 ){
+            return `Это ${d} час и ${b} минут`;
+        }else{
+            if( d % 10 == 1 && d != 11 ){
+                return `Это ${d} час и ${b} минут`;
+            }else if(d % 10 >= 2 && d % 10 <= 4 && d != 12 && d != 13 && d != 14){
+                console.log("true");
+                return `Это ${d} часа и ${b} минут`
+            }
+            return `Это ${d} часов и ${b} минут`;
+        }
+    }else{
+        let c =  "Ошибка, проверьте данные";
+        return c;
+    }
+}
+console.log(getTimeFromMinutes(740));
+
+function findMaxNumber(a, b, c, d) {
+    if (typeof(a) !== 'number' || typeof(b) !== 'number' || typeof(c) !== 'number' || typeof(d) !== 'number'){
+        return 0;
+    } else {
+        return Math.max(a, b, c, d);
+    }
+}
+console.log(findMaxNumber(2, 4, 5, 9))
+
+
+
