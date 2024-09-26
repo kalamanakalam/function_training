@@ -106,5 +106,60 @@ function findMaxNumber(a, b, c, d) {
 }
 console.log(findMaxNumber(2, 4, 5, 9))
 
+const personalPlanPeter = {
+    name: "Peter",
+    age: "29",
+    skills: {
+        languages: ['ru', 'eng'],
+        programmingLangs: {
+            js: '20%',
+            php: '10%'
+        },
+        exp: '1 month'
+    },
+    showAgeAndLangs: function(plan){
+        let a = '';
+        let {age} = plan;
+        let {languages} = plan.skills;
+        for (let i = 0; i <languages.length; i++){
+            if(a === '') a = `Мне ${age} и я владею языками: ${languages[i].toUpperCase()} `;
+            else a = a + languages[i].toUpperCase();
+        }
+        return a;
+    }
+};
+console.log(personalPlanPeter.showAgeAndLangs(personalPlanPeter));
+function showProgrammingLangs(plan) {
+    const a = plan.skills.programmingLangs;
+    let b = Object.keys(a);
+    let c = Object.values(a);
+    let d = '';
+    for(let i = 0; i < b.length; i++){
+        if(d === ''){
+            d = `Язык ${b[i]} изучен на ${c[i]}`;
+        }else{
+            d = d + `Язык ${b[i]} изучен на ${c[i]}\n` ;
+        }
+    }
+    return d;
+}
+console.log(showProgrammingLangs(personalPlanPeter));
+
+function showExperience(plan) {
+    const {exp} = plan.skills;
+    return `${exp}`;
+}
+console.log(showExperience(personalPlanPeter)); // первое решение просто с возвратом exp
+
+function showAllArr(plan){
+    for(let key in plan){
+        if(typeof(plan[key]) === 'object'){
+            for(let i in plan[key]){
+                if([i] == 'exp') return `${plan[key][i]}`;
+            }
+        }else if([key] == 'exp') return `${plan[key]}`;
+    }
+}
+console.log(showAllArr(personalPlanPeter)); // второе решение с дестуризацией обьекта и возвратом exp
 
 
